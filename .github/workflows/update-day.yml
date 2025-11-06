@@ -3,7 +3,10 @@ name: Auto-update
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * *" # runs dayly
+    - cron: "0 0 * * *" # runs daily
+
+permissions:
+  contents: write
 
 jobs:
   export-exract-publish:
