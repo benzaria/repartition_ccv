@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="resources/sheet.css">
+  <title>Répartition CCV</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #f8f8f8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      padding: 2rem;
+    }
+
+    /* --- Toggle --- */
+    .switch {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      width: 120px;
+      height: 40px;
+      background: #ddd;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      user-select: none;
+      overflow: hidden;
+    }
+
+    .switch::before {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 52px;
+      height: 32px;
+      background: #8e7cc3; /* active hue */
+      border-radius: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    .switch span {
+      flex: 1;
+      text-align: center;
+      font-weight: 500;
+      color: #555;
+      z-index: 1;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+    }
+
+    .switch.active::before {
+      transform: translateX(60px);
+    }
+
+    .switch.active span:first-child {
+      color: #555;
+    }
+
+    .switch.active span:last-child {
+      color: white;
+    }
+
+    .switch:not(.active) span:first-child {
+      color: white;
+    }
+
+    /* --- Iframes --- */
+    .sheetContainer {
+      width: 100%;
+      max-width: 800px;
+      height: 70vh;
+      border: 1px solid #ccc;
+      display: none;
+    }
+
+    .sheetContainer iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    #sheetContainer1 {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="switchSheet" class="switch">
+    <span>Groups</span>
+    <span>Répartition</span>
+  </div>
+
+  <div id="sheetContainer1" class="sheetContainer">
+    <iframe src="sheet1.html"></iframe>
+  </div>
+
+  <div id="sheetContainer2" class="sheetContainer">
+    <iframe src="sheet2.html"></iframe>
+  </div>
+
+  <script>
+    let sheetStat = 1;
+    const totalSheets = 2;
+    const switchEl = document.getElementById('switchSheet');
+
+    switchEl.addEventListener('click', () => {
+      // toggle state
+      sheetStat = sheetStat === 1 ? 2 : 1;
+      switchEl.classList.toggle('active', sheetStat === 2);
+
+      // display corresponding sheet
+      for (let i = 1; i <= totalSheets; i++) {
+        document.getElementById(`sheetContainer${i}`).style.display = (i === sheetStat) ? 'block' : 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>
