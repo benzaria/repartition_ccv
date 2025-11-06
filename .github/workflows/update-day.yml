@@ -1,4 +1,4 @@
-name: Export Public Sheet as HTML ZIP Stream
+name: Auto-update
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
     - cron: "0 0 * * *" # runs dayly
 
 jobs:
-  export-sheet-stream:
+  export-exract-publish:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,9 +16,13 @@ jobs:
       - name: Install unzip tool
         run: sudo apt-get update && sudo apt-get install -y unzip curl
 
-      - name: Stream-download and extract ZIP to root
+      - name: Download and extract ZIP to root
         run: |
-          curl -L "https://docs.google.com/spreadsheets/d/1Q8rcMCQEyQKiP3ftWzHH5hDotA35iqVaujgHnFIHDQM/export?format=zip" -o - | unzip -o -d .
+            mkdir -p temp_zip
+            ZIP_FILE="temp_zip/sheet.zip"
+            curl -L "https://docs.google.com/spreadsheets/d/1Q8rcMCQEyQKiP3ftWzHH5hDotA35iqVaujgHnFIHDQM/export?format=zip" -o $ZIP_FILE
+            unzip -o $ZIP_FILE -d .
+            rm -f $ZIP_FILE
 
       - name: Commit & push extracted files
         run: |
