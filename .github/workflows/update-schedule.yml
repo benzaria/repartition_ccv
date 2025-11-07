@@ -3,7 +3,8 @@ name: Auto-update
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * *" # runs daily
+    - cron: "*/30 17-23 * * *"   # every 30 min from 17:00 to 23:59
+    - cron: "0 0-16 * * *"       # every hour from 00:00 to 16:00
 
 permissions:
   contents: write
