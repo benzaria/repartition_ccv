@@ -1,0 +1,2 @@
+[![Auto-update](https://github.com/benzaria/repartition_ccv/actions/workflows/update-schedule.yml/badge.svg)](https://github.com/benzaria/repartition_ccv/actions/workflows/update-schedule.yml)
+[![pages-build-deployment](https://github.com/benzaria/repartition_ccv/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/benzaria/repartition_ccv/actions/workflows/pages/pages-build-deployment)
