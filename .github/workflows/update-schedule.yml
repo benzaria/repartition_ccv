@@ -22,17 +22,17 @@ jobs:
 
       - name: Download and extract ZIP to root
         run: |
-            mkdir -p temp_zip
-            ZIP_FILE="temp_zip/sheet.zip"
-            curl -L "https://docs.google.com/spreadsheets/d/1Q8rcMCQEyQKiP3ftWzHH5hDotA35iqVaujgHnFIHDQM/export?format=zip" -o $ZIP_FILE
-            unzip -o $ZIP_FILE -d .
-            rm -f $ZIP_FILE
+          mkdir -p temp_zip
+          ZIP_FILE="temp_zip/sheet.zip"
+          curl -L "https://docs.google.com/spreadsheets/d/1Q8rcMCQEyQKiP3ftWzHH5hDotA35iqVaujgHnFIHDQM/export?format=zip" -o $ZIP_FILE
+          unzip -o $ZIP_FILE -d .
+          rm -f $ZIP_FILE
 
       - name: Commit & push extracted files
         run: |
-            git config user.name "github-actions"
-            git config user.email "github-actions@github.com"
-            DATE_STAMP=$(date +"%A %d/%m/%y - %I:%M %p")
-            git add .
-            git commit -m "Auto-update: $DATE_STAMP" || echo "No changes"
-            git push
+          DATE_STAMP=$(date +"%A %d/%m/%y - %I:%M %p")
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add .
+          git commit -m "Auto-update: $DATE_STAMP" || echo "No changes"
+          git push
