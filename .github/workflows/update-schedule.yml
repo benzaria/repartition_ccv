@@ -1,6 +1,8 @@
 name: Auto-update
 
 on:
+  push:
+  pull_request:
   workflow_dispatch:
   schedule:
     # - cron: "*/30 17-23 * * *"
